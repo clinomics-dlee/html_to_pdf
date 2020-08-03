@@ -10,7 +10,9 @@ const url = process.argv[2];
 const filePath = process.argv[3];
 
 (async (path, filename) => {
-	const browser = await puppeteer.launch();
+	const browser = await puppeteer.launch({
+		args: ['--no-sandbox']
+	});
 	const page = await browser.newPage();
 	await page.goto(url + "?filePath=" + filePath);
 	await page.waitFor(500);
